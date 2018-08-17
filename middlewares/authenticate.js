@@ -23,7 +23,7 @@ const authenticate = async (req, res, next) => {
 
     if (decodedToken && decodedToken.data && decodedToken.data.username) {
       const { username } = decodedToken.data;
-      const user = UserModel.getUserByName(username);
+      const user = await UserModel.getUserByName(username);
       if (user) {
         logger.log('debug', `User ${username} was successfully authenticated`);
         req.user = user;
